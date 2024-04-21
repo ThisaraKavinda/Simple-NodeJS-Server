@@ -41,12 +41,12 @@ jobs:
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
           task-definition: task-definition.json 
-          container-name: demo-node-container
+          container-name: node-demo
           image: ${{ steps.build-image.outputs.image }}    
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: demo-node-service
-          cluster: ecs-demo-cluster-2
+          service: node-demo-service
+          cluster: node-demo-devCluster
           wait-for-service-stability: true
